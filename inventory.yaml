@@ -1,0 +1,6 @@
+vms:
+  hosts:
+    vm01:
+      ansible_host: 35.85.39.114
+      ansible_user: ec2-user
+      ansible_port: 22

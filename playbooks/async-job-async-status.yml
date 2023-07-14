@@ -1,0 +1,37 @@
+---
+- name: Execute task asynchronously
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Execute long-running task1
+      shell: |
+        sleep 20
+        echo 'completed'
+      async: 30
+      poll: 0
+      register: async_result1
+    
+    - name: Execute long-running task2
+      shell: |
+        sleep 20
+        echo 'completed'
+      async: 30
+      poll: 0
+      register: async_result2
+
+    - name: Check task1 status
+      async_status:
+        jid: "{{ async_result1.ansible_job_id }}"
+      register: task_status1
+      until: task_status1.finished
+      retries: 3
+      delay: 10
+
+    - name: Check task2 status
+      async_status:
+        jid: "{{ async_result2.ansible_job_id }}"
+      register: task_status2
+      until: task_status2.finished
+      retries: 3
+      delay: 10
+      

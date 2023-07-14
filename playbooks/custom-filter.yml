@@ -1,0 +1,17 @@
+---
+- name: custom-filter
+  hosts: localhost
+  vars:
+    numbers:
+      - 50
+      - 100
+      - 30
+
+  tasks:
+    - name: use custom total filter
+      ansible.builtin.debug:
+        msg: "{{ numbers | total }}"
+
+    - name: use custom average filter
+      ansible.builtin.debug:
+        msg: "{{ numbers | average }}"

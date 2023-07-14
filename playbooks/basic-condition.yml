@@ -1,0 +1,45 @@
+---
+- name: basic condition
+  hosts: localhost
+
+  vars:
+    username: "joon"
+
+  tasks:
+    # - name: Print Joon
+    #   debug:
+    #     msg: "Print Joon if the condition is true"
+    #   when: username == "joon"
+    
+    # - name: Print Tom
+    #   debug:
+    #     msg: "Print Tom if the condition is true"
+    #   when: username == "tom"
+
+    # # if the file does not exists, we marked as fail
+    # - name: Check if a file exists
+    #   stat:
+    #     path: /tmp/joon
+    #   register: file_stat
+    #   failed_when: file_stat.stat.exists == false
+    
+    # - name: Gather information about a file
+    #   stat:
+    #     path: /tmp/test1
+    #   register: file_info
+
+    # - name: Display file information
+    #   debug:
+    #     msg: "File exists: {{ file_info.stat.exists }}, Size: {{ file_info.stat.size }}"
+
+    - name: Create a file if it doesn't exist
+      command: touch /tmp/test2
+      changed_when: false
+
+    - name: Example block with 'when' condition
+      block:
+        - debug:
+            msg: "Task 1"
+        - debug:
+            msg: "Task 2"
+      when: username == "joon"

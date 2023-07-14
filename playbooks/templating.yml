@@ -1,0 +1,51 @@
+---
+- name: templating
+  hosts: localhost
+  vars:
+    my_string: "hello world"
+    my_variable: "hello world"
+
+  tasks:
+    - name: Print capitalized string
+      ansible.builtin.debug:
+        msg: "{{ my_string | capitalize }}"
+    
+    - name: Print upper string
+      ansible.builtin.debug:
+        msg: "{{ my_string | upper }}"
+
+    - name: Print lower string
+      ansible.builtin.debug:
+        msg: "{{ my_string | lower }}"
+    
+    - name: Print replace string
+      ansible.builtin.debug:
+        msg: "{{ my_string | replace('hello', 'hi') }}"
+    
+    - name: Print default value
+      ansible.builtin.debug:
+        msg: "{{ some_variable | default(5) }}"
+    
+    - name: Manage list variables(min)
+      ansible.builtin.debug:
+        msg: "{{ [1, 10, 100] | min }}"
+    
+    - name: Manage list variables(max)
+      ansible.builtin.debug:
+        msg: "{{ [1, 10, 100] | max }}"
+    
+    - name: Manage list variables(unique)
+      ansible.builtin.debug:
+        msg: "{{ [1, 1, 2] | unique }}"
+    
+    - name: Manage list variables(intersect)
+      ansible.builtin.debug:
+        msg: "{{ [1, 1, 2] | intersect([1]) }}"
+
+    - name: Evaluate mandatory(in case, you DEFAULT_UNDEFINED_VAR_BEHAVIOR = false)
+      ansible.builtin.debug:
+        msg: "{{ my_variable | mandatory }}"
+
+    - name: Retrieve data from file
+      ansible.builtin.debug:
+        msg: "{{ lookup('ansible.builtin.csvfile', 'username1 file=cred.csv delimiter=,') }}"

@@ -1,0 +1,3 @@
+[test]
+# 52.13.139.111 ansible_user=ec2-user ansible_port=22
+34.216.170.202 ansible_user=ubuntu ansible_port=22

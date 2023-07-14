@@ -1,0 +1,12 @@
+---
+- name: Execute task asynchronously
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Execute long-running task
+      shell: |
+        sleep 20
+        echo 'completed'
+      async: 30
+      poll: 5
+      register: async_result

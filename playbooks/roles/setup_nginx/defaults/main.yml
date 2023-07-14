@@ -1,0 +1,4 @@
+---
+# defaults file for setup_nginx
+nginx_version: 1.18.0-0ubuntu1.4
+nginx_custom_directory: /var/www/example_domain

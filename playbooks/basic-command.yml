@@ -1,0 +1,40 @@
+---
+- name: basic command
+  hosts: localhost
+
+  vars_files:
+    - vars.yml
+
+  vars:
+    today: "Today is friday!"
+
+  tasks:
+    - name: Execute command 'date'
+      command: date
+
+    - name: Show hosts file
+      command: cat hosts chdir=/etc
+
+    - name: Create folder if it does not exists
+      command: mkdir /tmp/hello creates=/tmp/hello
+
+    - name: Create a file world
+      file:
+        path: /tmp/hello/world
+        state: touch
+
+    - name: add context to /tmp/hello/world
+      lineinfile:
+        path: /tmp/hello/world
+        line: 'hello world'
+
+    - name: insert after /tmp/hello/world
+      lineinfile:
+        path: /tmp/hello/world
+        line: "{{ today }}"
+        insertafter: "hello world"
+
+    - name: add context to /tmp/hello/world
+      lineinfile:
+        path: /tmp/hello/world
+        line: "{{ person }}"

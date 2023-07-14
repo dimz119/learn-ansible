@@ -1,0 +1,9 @@
+---
+- name: test-valut
+  hosts: localhost
+
+  tasks:
+    - name: copy the encrypted file to show how vault works
+      template:
+        src: credential.txt
+        dest: /tmp/credntial.txt

@@ -1,0 +1,28 @@
+---
+- name: basic loop
+  hosts: localhost
+
+  tasks:
+    - name: Print item in the loop
+      debug:
+        msg: "Item: {{ item }}"
+      loop:
+        - item1
+        - item2
+        - item3
+
+    - name: Print item in the with_items
+      debug:
+        msg: "Item: {{ item }}"
+      with_items:
+        - item4
+        - item5
+        - item6
+
+    - name: Print key-value pair in the loop
+      debug:
+        msg: "Key: {{ item.key }}, Value: {{ item.value }}"
+      with_dict:
+        key1: value1
+        key2: value2
+        key3: value3

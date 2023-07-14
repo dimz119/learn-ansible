@@ -1,0 +1,9 @@
+---
+- name: custom-debug
+  hosts: localhost
+
+  tasks:
+    - name: use custom module, custom-debug
+      custom_debug:
+        msg: "hello world"
+        log_path: /tmp/debugging.log
